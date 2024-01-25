@@ -6,11 +6,12 @@ public class ficheroFutbol {
         File f;
         try {
             f = new File("src/liga.txt");
-            if (!f.exists()) {
+            f.delete();
+            if (!f.exists())
                 f.createNewFile();
-            }
-            FileWriter fw = new FileWriter("src/liga.txt");
-            fw.write("Nombre;Partidos Jugados;Partidos Ganados;Partidos Perdidos;Partidos Empatados;Puntos");
+
+            FileWriter fw = new FileWriter("src/liga.txt", true);
+            fw.write("Nombre;Partidos Jugados;Partidos Ganados;Partidos Perdidos;Partidos Empatados;Puntos" + "\n");
             fw.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -20,12 +21,12 @@ public class ficheroFutbol {
 
     public int guardar(String nombre, int partidosJugados, int partidosGanados, int partidosEmpatados) {
         int salida;
-        int partidosPerdidos = partidosEmpatados + partidosGanados - partidosJugados;
+        int partidosPerdidos = partidosJugados - partidosEmpatados - partidosGanados;
         int ptos = partidosGanados * 3 + partidosEmpatados * 1;
         try {
-            FileWriter fw = new FileWriter("src/liga.txt");
+            FileWriter fw = new FileWriter("src/liga.txt", true);
             fw.write(nombre + ";" + partidosJugados + ";" + partidosGanados + ";" + partidosPerdidos + ";"
-                    + partidosEmpatados + ";" + ptos);
+                    + partidosEmpatados + ";" + ptos + "\n");
             salida = 1;
             fw.close();
         } catch (IOException e) {
@@ -35,14 +36,21 @@ public class ficheroFutbol {
         return salida;
     }
 
-    public int leerDatos() {
-        int salida;
+    public static String leerDatos() {
+        StringBuilder salida = new StringBuilder();
+        String linea;
         try {
-
+            FileReader fr = new FileReader("src/liga.txt");
+            BufferedReader br = new BufferedReader(fr);
+            while ((linea = br.readLine()) != null) {
+                salida.append(linea + "\n");
+            }
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
-            salida = -1;
         }
+
+        return salida.toString();
     }
 
 }

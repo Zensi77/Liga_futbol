@@ -1,0 +1,2 @@
+Nombre;Partidos Jugados;Partidos Ganados;Partidos Perdidos;Partidos Empatados;Puntos
+dfaf;2;3;-5;4;13
