@@ -1,2 +1,4 @@
-Nombre;Partidos Jugados;Partidos Ganados;Partidos Perdidos;Partidos Empatados;Puntos
-dfaf;2;3;-5;4;13
+barsa;25;8;7;10;34
+10;34;16;12;6;54
+adsf;28;11;10;7;40
+madrid;26;7;6;13;34
